@@ -1,0 +1,14 @@
+{% include "base.html" %}
+{% block content %}
+<form action="#" method="post">
+    Уровень доверия: <input type="text" value="0.05" name="alpha">
+    <br>
+    Мощность: <input type="text" value="0.8" name="power">
+    <br>
+    Текущая конверсия: <input type="text" value="" name="old_cr">
+    <br>
+    Желаемая конверсия 1: <input type="text" value="0.04,0.07,0.09" name="new_cr">
+    <br>
+    <input type="submit" value="Send" name="b_1">
+</form>
+{% endblock %}

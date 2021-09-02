@@ -1,0 +1,45 @@
+{% include "base.html" %}
+{% block content %}
+<form action="#" method="post">
+    Уровень доверия: <input type="text" value="0.05" name="alpha">
+    <br>
+    Мощность: <input type="text" value="0.8" name="power">
+    <br>
+    Текущая конверсия: <input type="text" value="" name="old_cr">
+    <br>
+    Желаемая конверсия 1: <input type="text" value="" name="new_cr">
+    <br>
+    Желаемая конверсия 2: <input type="text" value="" name="new_cr_2">
+    <br>
+    <input type="submit" value="Send" name="b_1">
+</form>
+
+<table>
+    <tr>
+        <td>old CR</td>
+        <td>CR</td>
+        <td>Lift</td>
+        <td>Sample Size</td>
+        <td>Split Size</td>
+    </tr>
+
+    {% for cr in result %}
+    <tr>
+        <td>{{ old_cr }}</td>
+        <td>{{ cr }}</td>
+        <td>{{ result[cr]["lift"] }}</td>
+        <td>{{ result[cr]["sample_size"] }}</td>
+        <td>{{ result[cr]["split_size"] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<!-- <div>
+    <p>CR: {{cr}}</p>
+    <p>Относительный прирост: <span class='a_1'>{{ lift }}</span> </p>
+    <p>Размер выборки: <span class='a_2'>{{ sample_size }}</span></p>
+    <p>Размер сплита: <span class='a_3'>{{ split_size }}</span></p>
+</div> -->
+
+{% endblock %}
