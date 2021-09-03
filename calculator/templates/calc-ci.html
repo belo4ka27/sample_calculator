@@ -1,0 +1,41 @@
+{% include "base_1.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="header_1">Расчет доверительного интервала</div>
+    <form class="form-ci" action="#" method="post">
+            Уровень доверия, %:
+            <br>
+            <select class="form-select" name="conf_level_1" aria-label="Default select example">
+                <option selected value="95">95</option>
+              <option value="99">99</option>
+            </select>
+            <br>
+
+            <div class="div-inline">
+                <div class="header_2">Выборка 1</div>
+                Размер:
+                <br>
+                <input type="text" value="1000" name="sample_size_1">
+                <br>
+                Конверсия, %:
+                <br>
+                <input type="text" value="10" name="cr_sample_1">
+            </div>
+
+            <div class="div-inline">
+                <div class="header_2">Выборка 2</div>
+                Размер:
+                <br>
+                <input type="text" value="2000" name="sample_size_2">
+                <br>
+                Конверсия, %:
+                <br>
+                <input type="text" value="12" name="cr_sample_2">
+            </div>
+
+            <br>
+            <input type="submit" value="Рассчитать" name="b_1">
+    </form>
+</div>
+{% endblock %}
