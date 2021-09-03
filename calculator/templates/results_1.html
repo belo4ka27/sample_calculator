@@ -1,49 +1,56 @@
-{% include "base.html" %}
+{% include "base_1.html" %}
 {% block content %}
 <div class="container">
-    <div class="header_1">Расчет выборки для бинарного A/B-теста</div>
-    <form action="#" method="post">
-        Уровень доверия, %:
-<!--        <br>-->
-        <input type="text" value="{{ conf_level }}" name="conf_level">
-<!--        <br>-->
-        Мощность, %:
-<!--        <br>-->
-        <input type="text" value="{{ power }}" name="power">
-<!--        <br>-->
-        Текущая конверсия, %:
-<!--        <br>-->
-        <input type="text" value="{{ old_cr }}" name="old_cr">
-<!--        <br>-->
-        Желаемая конверсия, %:
-<!--        <br>-->
-        <input type="text" value="{{ new_crs }}" name="new_cr">
-        <br>
-        <input type="submit" value="Рассчитать" name="b_1">
-    </form>
+    <div class="header_1">Расчет доверительного интервала</div>
+        <form class="form-ci" action="#" method="post">
+            Уровень доверия, %:
+            <br>
+            <select class="form-select" name="conf_level_1" aria-label="Default select example">
+                <option selected value="{{ conf_level_1 }}">{{ conf_level_1 }}</option>
+              <option value="{{ conf_level_2 }}">{{ conf_level_2 }}</option>
+            </select>
+            <br>
+
+            <div class="div-inline">
+                <div class="header_2">Выборка 1</div>
+                Размер:
+                <br>
+                <input type="text" value="{{ sample_size_1 }}" name="sample_size_1">
+                <br>
+                Конверсия, %:
+                <br>
+                <input type="text" value="{{ cr_sample_1_percent }}" name="cr_sample_1">
+            </div>
+
+            <div class="div-inline">
+                <div class="header_2">Выборка 2</div>
+                Размер:
+                <br>
+                <input type="text" value="{{ sample_size_2 }}" name="sample_size_2">
+                <br>
+                Конверсия, %:
+                <br>
+                <input type="text" value="{{ cr_sample_2_percent }}" name="cr_sample_2">
+            </div>
+
+            <br>
+            <input type="submit" value="Рассчитать" name="b_1">
+        </form>
 </div>
 
-<div class="container">
-    <div class="header_1">Результат:</div>
-    <table>
-        <tr>
-            <td>Текущая конверсия</td>
-            <td>Желаемая конверсия</td>
-            <td>Прирост (lift, %)</td>
-            <td>Размер выборки</td>
-            <td>Размер одного сплита</td>
-        </tr>
-
-        {% for cr in result %}
-        <tr>
-            <td>{{ old_cr }}</td>
-            <td>{{ cr }}</td>
-            <td>{{ result[cr]["lift"] }}</td>
-            <td>{{ result[cr]["sample_size"] }}</td>
-            <td>{{ result[cr]["split_size"] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="container main">
+    <div class="header_1" style="padding-bottom: 0;">Результат:</div>
+    <div class="is-intersection">{{ is_intersection }}</div>
+    <div class="div-inline">
+        <div class="header_2">Выборка 1</div>
+        Оценка конверсии: {{ cr_sample_1_percent }}%
+        <br>Доверительный интервал: [{{ sample_size_1_lower }}; {{ sample_size_1_upper }}]</br>
+    </div>
+    <div class="div-inline" style="display: {{ display_sample_2_block }}">
+        <div class="header_2">Выборка 2</div>
+        Оценка конверсии: {{ cr_sample_2_percent }}%
+        <br>Доверительный интервал: [{{ sample_size_2_lower }}; {{ sample_size_2_upper }}]</br>
+    </div>
 </div>
 
 <!-- <div>

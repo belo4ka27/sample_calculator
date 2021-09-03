@@ -1,39 +1,50 @@
 {% include "base.html" %}
 {% block content %}
-<form action="#" method="post">
-    Уровень доверия: <input type="text" value="0.05" name="alpha">
-    <br>
-    Мощность: <input type="text" value="0.8" name="power">
-    <br>
-    Текущая конверсия: <input type="text" value="" name="old_cr">
-    <br>
-    Желаемая конверсия 1: <input type="text" value="" name="new_cr">
-    <br>
-    Желаемая конверсия 2: <input type="text" value="" name="new_cr_2">
-    <br>
-    <input type="submit" value="Send" name="b_1">
-</form>
+<div class="container">
+    <div class="header_1">Расчет выборки для бинарного A/B-теста</div>
+    <form action="#" method="post">
+        Уровень доверия, %:
+        <br>
+        <input type="text" value="{{ conf_level }}" name="conf_level">
+        <br>
+        Мощность, %:
+        <br>
+        <input type="text" value="{{ power }}" name="power">
+        <br>
+        Текущая конверсия, %:
+        <br>
+        <input type="text" value="{{ old_cr }}" name="old_cr">
+        <br>
+        Желаемая конверсия, %:
+        <br>
+        <input type="text" value="{{ new_crs }}" name="new_cr">
+        <br>
+        <input type="submit" value="Рассчитать" name="b_1">
+    </form>
+</div>
 
-<table>
-    <tr>
-        <td>old CR</td>
-        <td>CR</td>
-        <td>Lift</td>
-        <td>Sample Size</td>
-        <td>Split Size</td>
-    </tr>
+<div class="container">
+    <div class="header_1">Результат:</div>
+    <table>
+        <tr>
+            <td>Текущая конверсия</td>
+            <td>Желаемая конверсия</td>
+            <td>Прирост (lift, %)</td>
+            <td>Размер выборки</td>
+            <td>Размер одного сплита</td>
+        </tr>
 
-    {% for cr in result %}
-    <tr>
-        <td>{{ old_cr }}</td>
-        <td>{{ cr }}</td>
-        <td>{{ result[cr]["lift"] }}</td>
-        <td>{{ result[cr]["sample_size"] }}</td>
-        <td>{{ result[cr]["split_size"] }}</td>
-    </tr>
-    {% endfor %}
-</table>
-
+        {% for cr in result %}
+        <tr>
+            <td>{{ old_cr }}</td>
+            <td>{{ cr }}</td>
+            <td>{{ result[cr]["lift"] }}</td>
+            <td>{{ result[cr]["sample_size"] }}</td>
+            <td>{{ result[cr]["split_size"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 
 <!-- <div>
     <p>CR: {{cr}}</p>

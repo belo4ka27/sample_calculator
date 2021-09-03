@@ -7,11 +7,21 @@
     body {
       color: #434343;
     }
+
+    .container.main {
+      margin-bottom: 50px;
+    }
+
     [type=submit] {
       background-color: #3E8DF5;
       color: #fff;
       font-weight: 500;
       padding: 7px 20px;
+      margin-top: 20px;
+    }
+
+    li.nav-item.active a.nav-link {
+      color: #3E8DF5 !important;
     }
 
     form.form-sample-size {
@@ -19,20 +29,26 @@
       display: inline-grid;
     }
 
-    input {
+    input, .form-select {
       border-color: #ECEEF0;
       background-color: #F8F9FA;
       border-radius: 7px;
       margin: 5px;
       border-style: solid;
       border-width: 1px;
+      padding: 3px 5px;
+    }
+
+    .form-select {
+      width: 180px;
+      height: 33px;
     }
 
     .header_1 {
       line-height: 40px;
       font-weight: 600;
-      padding: 10px 0;
-      font-size: 20px;
+      padding: 40px 0;
+      font-size: 30px;
     }
 
     .header_2 {
@@ -42,19 +58,20 @@
       font-size: 20px;
     }
 
+    .is-intersection {
+      font-weight: 600;
+      padding-top: 10px;
+      color: {{ intersection_color }};
+    }
+
     td {
       border: 1px solid grey;
       padding: 5px 10px;
     }
 
-    table {
-      margin-bottom: 50px;
-    }
-
     .div-inline {
       display: inline-block;
       padding-right: 40px;
-      padding-top: 20px;
      }
   </style>
 
@@ -70,11 +87,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Расчет выборки<span class="sr-only">(current)</span></a>
-      </li>
       <li class="nav-item">
-        <a class="nav-link" href="calculate_1">Расчет довер. интервала</a>
+        <a class="nav-link" href="calc-sample-size">Расчет выборки</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Расчет довер. интервала</a>
       </li>
 <!--      <li class="nav-item dropdown">-->
 <!--        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
@@ -91,10 +108,6 @@
 <!--        <a class="nav-link disabled" href="#">Disabled</a>-->
 <!--      </li>-->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
   </div>
 </nav>
   </container>
