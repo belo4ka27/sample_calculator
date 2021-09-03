@@ -1,0 +1,56 @@
+{% include "base.html" %}
+{% block content %}
+<div class="container">
+    <div class="header_1">Расчет выборки для бинарного A/B-теста</div>
+    <form action="#" method="post">
+        Уровень доверия, %:
+<!--        <br>-->
+        <input type="text" value="{{ conf_level }}" name="conf_level">
+<!--        <br>-->
+        Мощность, %:
+<!--        <br>-->
+        <input type="text" value="{{ power }}" name="power">
+<!--        <br>-->
+        Текущая конверсия, %:
+<!--        <br>-->
+        <input type="text" value="{{ old_cr }}" name="old_cr">
+<!--        <br>-->
+        Желаемая конверсия, %:
+<!--        <br>-->
+        <input type="text" value="{{ new_crs }}" name="new_cr">
+        <br>
+        <input type="submit" value="Рассчитать" name="b_1">
+    </form>
+</div>
+
+<div class="container">
+    <div class="header_1">Результат:</div>
+    <table>
+        <tr>
+            <td>Текущая конверсия</td>
+            <td>Желаемая конверсия</td>
+            <td>Прирост (lift, %)</td>
+            <td>Размер выборки</td>
+            <td>Размер одного сплита</td>
+        </tr>
+
+        {% for cr in result %}
+        <tr>
+            <td>{{ old_cr }}</td>
+            <td>{{ cr }}</td>
+            <td>{{ result[cr]["lift"] }}</td>
+            <td>{{ result[cr]["sample_size"] }}</td>
+            <td>{{ result[cr]["split_size"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<!-- <div>
+    <p>CR: {{cr}}</p>
+    <p>Относительный прирост: <span class='a_1'>{{ lift }}</span> </p>
+    <p>Размер выборки: <span class='a_2'>{{ sample_size }}</span></p>
+    <p>Размер сплита: <span class='a_3'>{{ split_size }}</span></p>
+</div> -->
+
+{% endblock %}
